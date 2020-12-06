@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+#  mysqldb:
+#    image: mysql:5.7.32
+#    container_name: fiistars-mysqldb
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=root
+#      - MYSQL_DATABASE=fiistars
+#    ports:
+#      - "3306:3306"
+
+  rest:
+    build: ./fiistars-api
+    image: fiistars-api
+    container_name: fiistars-api
+    environment:
+      - APP_MYSQL_DNS_SERVER=*****
+      - APP_MYSQL_PORT=3306
+      - APP_MYSQL_DB=*****
+      - APP_MYSQL_USERNAME=********
+      - APP_MYSQL_PASSWORD=********
+    ports:
+      - "8081:8081"
+    restart: always
+#    depends_on:
+#      - mysqldb
+
+    links:
+      - redis
+#      - mysqldb
+
+
+  redis:
+    image: "redis:alpine"
+    ports:
+     - "6379:6379"
