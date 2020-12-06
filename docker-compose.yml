@@ -1,15 +1,6 @@
 version: "3"
 
 services:
-#  mysqldb:
-#    image: mysql:5.7.32
-#    container_name: fiistars-mysqldb
-#    environment:
-#      - MYSQL_ROOT_PASSWORD=root
-#      - MYSQL_DATABASE=fiistars
-#    ports:
-#      - "3306:3306"
-
   rest:
     build: ./fiistars-api
     image: fiistars-api
@@ -23,13 +14,9 @@ services:
     ports:
       - "8081:8081"
     restart: always
-#    depends_on:
-#      - mysqldb
 
     links:
       - redis
-#      - mysqldb
-
 
   redis:
     image: "redis:alpine"
